@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+  # Spring Boot Application
+  plantao-facil-app:
+    image: plantao-facil:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/plantao-facil
+    depends_on:
+      - postgres-db
+
+  #Mysql Database
+  mysql-db:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - './.mysql-data/db:/var/lib/mysql'
+
+  # Postgres Database
+  postgres-db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: plantao-facil
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
