@@ -11,9 +11,9 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://localhost:5432/postgres-db
+    username: postg2res
+    password: 1111
   jpa:
     show-sql: true
     hibernate:
@@ -21,9 +21,3 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
-
-app:
-  datasource:
-    jdbcUrl: jdbc:mysql://localhost:3306/concession
-    username: root
-    password: root
